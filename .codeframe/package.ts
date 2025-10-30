@@ -5,7 +5,7 @@ import { resolve, join } from "node:path";
 import { argv, env } from "node:process";
 
 export const build = (cwd: string = process.cwd()): BuildType => {
-  const LINUX = resolve(cwd, "../../../toolchains/linux");
+  const TOOLCHAINS = resolve(cwd, "../../toolchains/cmake-tools");
   const toolchain = resolve(cwd, "../../../toolchains/llvm-mingw");
   const CLANG = join(toolchain, "bin/clang.exe").replace(/\\/g, "/");
   const CLANGXX = join(toolchain, "bin/clang++.exe").replace(/\\/g, "/");
@@ -73,7 +73,7 @@ export const build = (cwd: string = process.cwd()): BuildType => {
     },
     linux_x86_64: {
       configStep: `cmake -S . -B build/linux/x86_64 -G Ninja \
-      -DCMAKE_TOOLCHAIN_FILE=${LINUX}/linux_x86-64.cmake \
+      -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAINS}/linux_x86-64.cmake \
       -DCMAKE_BUILD_TYPE=Release \
       -DBUILD_SHARED_LIBS=OFF \
       -DUPDATE_DEPS=ON \
@@ -97,7 +97,7 @@ export const build = (cwd: string = process.cwd()): BuildType => {
     },
     linux_aarch64: {
       configStep: `cmake -S . -B build/linux/aarch64 -G Ninja \
-      -DCMAKE_TOOLCHAIN_FILE=${LINUX}/linux_aarch64.cmake \
+      -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAINS}/linux_aarch64.cmake \
       -DCMAKE_BUILD_TYPE=Release \
       -DBUILD_SHARED_LIBS=OFF \
       -DUPDATE_DEPS=ON \
