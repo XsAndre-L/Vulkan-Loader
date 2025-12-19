@@ -62,8 +62,7 @@ export const build = (cwd: string = process.cwd()): BuildType => {
       -DCMAKE_SYSTEM_NAME=Windows \
       -DCMAKE_SYSTEM_PROCESSOR=x86_64 \
       -DCMAKE_INSTALL_PREFIX=../${CPP_OUTPUT_DIR}/vulkan/vulkan-loader/windows/x86_64
-    `,
-
+      `,
       buildStep: `cmake --build build/windows/x86_64 -j`,
       installStep: `cmake --install build/windows/x86_64`,
     },
